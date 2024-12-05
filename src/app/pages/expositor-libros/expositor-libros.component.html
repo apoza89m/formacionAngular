@@ -1,0 +1,9 @@
+<h2>Expositor</h2>
+<p>El modo elegido es: {{ modoElegido }}</p>
+
+<div *ngIf="modoElegido === 'Comprar'">
+  <p>Carrito de la compra: 0 unidades</p>
+</div>
+
+<button (click)="modoElegido = 'Compra'">Modo compra</button>
+<button (click)="cambiaModo('Visita')">Modo visita</button>
