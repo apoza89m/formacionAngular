@@ -1,0 +1,10 @@
+.contenedor-libros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+button {
+  margin: 0 0.3rem;
+}

@@ -10,8 +10,49 @@
 
 <hr />
 
-<div>
-  <ul>
+<!--<ul>
     <li *ngFor="let libro of misLibros">{{ libro.titulo }}</li>
-  </ul>
+  </ul>-->
+
+<!--<div *ngFor="let libro of misLibros">
+  <p>Titulo: {{ libro.titulo }}</p>
+  <p *ngIf="libro.autor">Autor: {{ libro.autor }}</p>
+  <p>Precio: {{ libro.precio }}</p>
+  <p>Stock: {{ libro.stock }}</p>
+  <br />
+</div>-->
+<div class="contenedor-libros">
+  <div *ngFor="let libro of misLibros">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ libro.titulo | uppercase }}</mat-card-title>
+        <mat-card-subtitle *ngIf="libro.autor">{{
+          libro.autor
+        }}</mat-card-subtitle>
+        <mat-card-subtitle>Precio: {{ libro.precio }}€</mat-card-subtitle>
+        <mat-card-subtitle>Stock: {{ libro.stock }}</mat-card-subtitle>
+      </mat-card-header>
+      <!--<img
+      mat-card-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz
+        breeds of dog from Japan. A small, agile dog that copes very well with
+        mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>-->
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Comprar</button>
+        <button mat-raised-button color="accent">Add</button>
+        <button mat-raised-button color="warn">Remove</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
+<pre>
+  {{ misLibros | json }}
+</pre>

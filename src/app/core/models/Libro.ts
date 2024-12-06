@@ -1,6 +1,6 @@
 export interface Libro {
-  titulo: String;
-  autor?: String;
+  titulo: string;
+  autor?: string;
   precio: number;
   stock: number;
 }
