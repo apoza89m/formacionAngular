@@ -1,5 +1,7 @@
 # FormacionAngular
 
+02 - 29:32
+
 ng new formacionAngular --no-standalone
 
 ng serve --open
