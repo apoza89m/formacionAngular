@@ -25,7 +25,6 @@
   <div *ngFor="let libro of misLibros">
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ libro.titulo | uppercase }}</mat-card-title>
         <mat-card-subtitle *ngIf="libro.autor">{{
           libro.autor
@@ -33,12 +32,8 @@
         <mat-card-subtitle>Precio: {{ libro.precio }}€</mat-card-subtitle>
         <mat-card-subtitle>Stock: {{ libro.stock }}</mat-card-subtitle>
       </mat-card-header>
-      <!--<img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-content>
+      <img mat-card-image src="images/{{ libro.titulo }}.jpg" alt="Portada" />
+      <!--<mat-card-content>
       <p>
         The Shiba Inu is the smallest of the six original and distinct spitz
         breeds of dog from Japan. A small, agile dog that copes very well with
