@@ -13,14 +13,15 @@ export class AuthGuard implements CanActivate {
     console.log('Ejecuto guard.');
     const isAuthenticated = this.checkAuthentication();
     if (!isAuthenticated) {
-      this.router.navigate(['/expositor']);
+      this.router.navigate(['/login']);
       return false;
     }
     return true;
   }
 
   private checkAuthentication(): boolean {
-    // Implementa tu lógica de autenticación aquí
-    return true; // Cambia esto según tu lógica
+    const token = sessionStorage.getItem('token');
+    if (token) return true;
+    else return false;
   }
 }

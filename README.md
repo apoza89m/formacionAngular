@@ -1,6 +1,6 @@
 # FormacionAngular
 
-02 - 01:47:03
+03 - 00:14:00
 
 ng new formacionAngular --no-standalone
 

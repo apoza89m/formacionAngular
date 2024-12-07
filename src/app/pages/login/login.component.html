@@ -1,0 +1,8 @@
+<p *ngIf="sesion">Logueado.</p>
+<p *ngIf="!sesion">No esta logueado.</p>
+<button mat-raised-button color="primary" (click)="iniciarSesion()">
+  Iniciar sesión
+</button>
+<button mat-raised-button color="accent" (click)="cerrarSesion()">
+  Cerrar sesión
+</button>
