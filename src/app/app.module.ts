@@ -13,7 +13,8 @@ import { CreacionLibrosComponent } from './pages/creacion-libros/creacion-libros
 import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LibroComponent } from './pages/libro/libro.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,15 @@ import { HttpClientModule } from '@angular/common/http';
     ExpositorLibrosComponent,
     CreacionLibrosComponent,
     NotFoundComponent,
+    LibroComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [provideClientHydration(), AuthGuard],
   bootstrap: [AppComponent],

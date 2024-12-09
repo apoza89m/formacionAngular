@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Libro } from '../../core/models/Libro';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-expositor-libros',
@@ -22,6 +23,10 @@ export class ExpositorLibrosComponent {
   ];*/
 
   misLibros: Libro[];
+
+  librosComprado: Libro[] = [];
+
+  private _snackBar = inject(MatSnackBar);
 
   constructor() {
     console.log('Soy el constructor.');
@@ -119,5 +124,22 @@ export class ExpositorLibrosComponent {
    */
   cambiaModo(modo: String): void {
     this.modoElegido = modo;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar
+      .open(message, action, {
+        duration: 3000,
+        panelClass: 'custom-snack-bar', // Clase personalizada
+      })
+      .onAction()
+      .subscribe(() => {
+        this._snackBar.dismiss();
+      });
+  }
+
+  lanzaNotificacion(libroComprado: Libro) {
+    this.openSnackBar('Libro comprado: ' + libroComprado.titulo, 'Cerrar');
+    this.librosComprado.push(libroComprado);
   }
 }

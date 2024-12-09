@@ -1,12 +1,49 @@
 <p *ngIf="sesion">Logueado.</p>
 <p *ngIf="!sesion">No esta logueado.</p>
-<button mat-raised-button color="primary" (click)="iniciarSesion()">
+<form [formGroup]="formLogin">
+  <mat-form-field>
+    <mat-label>Introduce tu email</mat-label>
+    <input matInput formControlName="email" />
+    <mat-error *ngIf="formLogin.get('email').hasError('required')"
+      >Campo obligatorio</mat-error
+    >
+    <mat-error *ngIf="formLogin.get('email').hasError('email')"
+      >Formato invalido</mat-error
+    >
+    <mat-error *ngIf="formLogin.get('email').hasError('minlength')"
+      >Debe tener al menos 5 carácteres</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Introduce tu password</mat-label>
+    <input matInput formControlName="password" type="password" />
+    <mat-error *ngIf="formLogin.get('email').hasError('required')"
+      >Campo obligatorio</mat-error
+    >
+  </mat-form-field>
+  <br />
+  <button mat-raised-button color="primary" (click)="formLogin.reset()">
+    Limpiar
+  </button>
+</form>
+
+<pre>
+  {{ formLogin.value | json }}
+  <br>
+  Valido: {{formLogin.valid}}
+</pre>
+<button
+  mat-raised-button
+  color="primary"
+  (click)="iniciarSesion()"
+  [disabled]="!formLogin.valid"
+>
   Iniciar sesión
 </button>
 <button mat-raised-button color="accent" (click)="cerrarSesion()">
   Cerrar sesión
 </button>
 
-<button mat-stroked-button (click)="openSnackBar('Hola caracola.', 'Cerrar')">
+<!--<button mat-stroked-button (click)="openSnackBar('Test.', 'Cerrar')">
   Snack-bar
-</button>
+</button>-->

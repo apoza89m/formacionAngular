@@ -2,11 +2,15 @@
 <p>El modo elegido es: {{ modoElegido }}</p>
 
 <div *ngIf="modoElegido === 'Compra'">
-  <p>Carrito de la compra: 0 unidades</p>
+  <p>Carrito de la compra: {{ librosComprado.length }} unidades</p>
 </div>
 
-<button (click)="modoElegido = 'Compra'">Modo compra</button>
-<button (click)="cambiaModo('Visita')">Modo visita</button>
+<button mat-raised-button color="primary" (click)="modoElegido = 'Compra'">
+  Modo compra
+</button>
+<button mat-raised-button color="primary" (click)="cambiaModo('Visita')">
+  Modo visita
+</button>
 
 <hr />
 
@@ -22,31 +26,12 @@
   <br />
 </div>-->
 <div class="contenedor-libros">
-  <div *ngFor="let libro of misLibros">
-    <mat-card class="example-card" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>{{ libro.titulo | uppercase }}</mat-card-title>
-        <mat-card-subtitle *ngIf="libro.autor">{{
-          libro.autor
-        }}</mat-card-subtitle>
-        <mat-card-subtitle>Precio: {{ libro.precio }}€</mat-card-subtitle>
-        <mat-card-subtitle>Stock: {{ libro.stock }}</mat-card-subtitle>
-      </mat-card-header>
-      <!--<img mat-card-image src="images/{{ libro.titulo }}.jpg" alt="Portada" />-->
-      <!--<mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan. A small, agile dog that copes very well with
-        mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
-    </mat-card-content>-->
-      <mat-card-actions>
-        <button mat-raised-button color="primary">Comprar</button>
-        <button mat-raised-button color="accent">Add</button>
-        <button mat-raised-button color="warn">Remove</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+  <!--<div *ngFor="let libro of misLibros"></div>-->
+  <app-libro
+    *ngFor="let libroIterado of misLibros"
+    [libro]="libroIterado"
+    (notificacionCompra)="lanzaNotificacion($event)"
+  ></app-libro>
 </div>
 <pre>
   {{ misLibros | json }}

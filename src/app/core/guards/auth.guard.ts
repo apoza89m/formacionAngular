@@ -22,9 +22,10 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkAuthentication(): boolean {
-    const token = sessionStorage.getItem('token');
-    if (token) return true;
-    else return false;
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const token = sessionStorage.getItem('token');
+      return token !== null;
+    } else return false;
   }
 
   openSnackBar(message: string, action: string) {

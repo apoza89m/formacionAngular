@@ -1,5 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +10,12 @@ export class AppComponent {
 
   sesion: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor() {}
 
   ngOnInit() {}
 
   isLogged() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
       const token = sessionStorage.getItem('token');
       return token !== null;
     }
