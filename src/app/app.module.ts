@@ -13,14 +13,15 @@ import { CreacionLibrosComponent } from './pages/creacion-libros/creacion-libros
 import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     ExpositorLibrosComponent,
     CreacionLibrosComponent,
     NotFoundComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,

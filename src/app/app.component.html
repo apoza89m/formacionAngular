@@ -1,3 +1,33 @@
-<h1>App - Libreria</h1>
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="drawer.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Mi libreria</span>
+  <span class="example-spacer"></span>
+  <mat-icon
+    class="example-icon"
+    aria-hidden="false"
+    aria-label="Example user verified icon"
+    *ngIf="isLogged()"
+    >verified_user</mat-icon
+  >
+</mat-toolbar>
 
-<router-outlet />
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p class="align-center">Menu</p>
+    <hr />
+    <div class="elementoBarra" [routerLink]="['login']">Inicio de sesión</div>
+    <div class="elementoBarra" [routerLink]="['expositor']">Expositor</div>
+    <div class="elementoBarra" [routerLink]="['creacion']">Creación</div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet />
+  </div>
+</mat-drawer-container>
