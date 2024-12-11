@@ -15,6 +15,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LibroComponent } from './pages/libro/libro.component';
+import { LibroService } from './core/services/libro.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { LibroComponent } from './pages/libro/libro.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [provideClientHydration(), AuthGuard],
+  providers: [provideClientHydration(), AuthGuard, LibroService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

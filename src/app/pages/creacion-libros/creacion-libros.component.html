@@ -1,1 +1,104 @@
-<p>creacion-libros works!</p>
+<h2>Creación</h2>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Agregar Nuevo Libro</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="libroForm" (ngSubmit)="addLibro()">
+      <!-- Título -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input
+          matInput
+          formControlName="titulo"
+          placeholder="Título del libro"
+        />
+        <mat-error *ngIf="libroForm.get('titulo')?.hasError('required')">
+          El título es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Autor -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Autor</mat-label>
+        <input matInput formControlName="autor" placeholder="Autor del libro" />
+      </mat-form-field>
+
+      <!-- Precio -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" formControlName="precio" />
+        <mat-error *ngIf="libroForm.get('precio')?.hasError('required')">
+          El precio es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="libroForm.get('precio')?.hasError('min')">
+          El precio debe ser mayor a 0.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Stock -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Stock</mat-label>
+        <input matInput type="number" formControlName="stock" />
+        <mat-error *ngIf="libroForm.get('stock')?.hasError('required')">
+          El stock es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="libroForm.get('stock')?.hasError('min')">
+          El stock debe ser mayor a 0.
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <!-- Botones -->
+      <div class="button-container">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="libroForm.invalid"
+        >
+          Agregar Libro
+        </button>
+        <button mat-button color="warn" (click)="libroForm.reset()">
+          Limpiar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<hr />
+
+<h3>Previsualización</h3>
+<mat-card
+  *ngIf="libroPrevisualizado"
+  class="example-card"
+  appearance="outlined"
+>
+  <mat-card-header>
+    <mat-card-title>{{
+      libroPrevisualizado.titulo | uppercase
+    }}</mat-card-title>
+    <mat-card-subtitle *ngIf="libroPrevisualizado.autor">
+      {{ libroPrevisualizado.autor }}
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      Precio: {{ libroPrevisualizado.precio }}€
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      Stock: {{ libroPrevisualizado.stock }}
+    </mat-card-subtitle>
+    <button
+      mat-icon-button
+      color="warn"
+      class="close-button"
+      (click)="cerrarPrevisualizacion()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Comprar</button>
+  </mat-card-actions>
+</mat-card>

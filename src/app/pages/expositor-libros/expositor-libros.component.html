@@ -25,6 +25,8 @@
   <p>Stock: {{ libro.stock }}</p>
   <br />
 </div>-->
+
+<h2 *ngIf="!misLibros">Cargando libros desde API</h2>
 <div class="contenedor-libros">
   <!--<div *ngFor="let libro of misLibros"></div>-->
   <app-libro
@@ -33,6 +35,6 @@
     (notificacionCompra)="lanzaNotificacion($event)"
   ></app-libro>
 </div>
-<pre>
+<!--<pre>
   {{ misLibros | json }}
-</pre>
+</pre>-->
