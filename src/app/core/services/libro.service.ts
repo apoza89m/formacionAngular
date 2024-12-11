@@ -85,6 +85,19 @@ export class LibroService {
       libro8,
       libro9,
     ];
+
+    if (this.isBrowserEnvironment()) {
+      const librosCookie = localStorage.getItem('librosEnLocal');
+      if (librosCookie) {
+        this.misLibros = JSON.parse(librosCookie);
+      } else {
+        localStorage.setItem('librosEnLocal', JSON.stringify(this.misLibros));
+      }
+    }
+  }
+
+  private isBrowserEnvironment(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 
   openSnackBar(message: string, action: string) {
@@ -112,6 +125,7 @@ export class LibroService {
   addLibro(nuevoLibro: Libro): Observable<void> {
     return new Observable((observer) => {
       this.misLibros.push(nuevoLibro);
+      localStorage.setItem('librosEnLocal', JSON.stringify(this.misLibros));
       observer.next();
       observer.complete();
     });

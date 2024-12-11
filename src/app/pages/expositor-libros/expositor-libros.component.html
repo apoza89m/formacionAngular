@@ -1,4 +1,11 @@
 <h2>Expositor</h2>
+<!-- no se va a ver hasta que se invoque-->
+<div *ngIf="modoElegido === 'Compra'; else opcionElse">
+  <h3>Compra</h3>
+</div>
+<ng-template #opcionElse>
+  <h3>Admin</h3>
+</ng-template>
 <p>El modo elegido es: {{ modoElegido }}</p>
 
 <div *ngIf="modoElegido === 'Compra'">
@@ -8,8 +15,8 @@
 <button mat-raised-button color="primary" (click)="modoElegido = 'Compra'">
   Modo compra
 </button>
-<button mat-raised-button color="primary" (click)="cambiaModo('Visita')">
-  Modo visita
+<button mat-raised-button color="primary" (click)="cambiaModo('Admin')">
+  Modo Administración
 </button>
 
 <hr />
@@ -32,6 +39,7 @@
   <app-libro
     *ngFor="let libroIterado of misLibros"
     [libro]="libroIterado"
+    [modoElegido]="modoElegido"
     (notificacionCompra)="lanzaNotificacion($event)"
   ></app-libro>
 </div>

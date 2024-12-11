@@ -11,6 +11,7 @@ import { Libro } from '../../core/models/Libro';
 export class CreacionLibrosComponent {
   libroForm: FormGroup;
   libroPrevisualizado?: Libro;
+  libroCreado: Libro = {} as Libro;
 
   constructor(private fb: FormBuilder, private libroService: LibroService) {
     console.log('Mi libro favorito: ' + this.libroService.favorito);
@@ -19,6 +20,9 @@ export class CreacionLibrosComponent {
       autor: [''],
       precio: [0, [Validators.required, Validators.min(0.01)]],
       stock: [0, [Validators.required, Validators.min(1)]],
+    });
+    this.libroForm.valueChanges.subscribe((valor) => {
+      this.libroCreado = valor;
     });
   }
 

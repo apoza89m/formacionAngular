@@ -46,7 +46,6 @@ export class LoginComponent {
     this._snackBar
       .open(message, action, {
         duration: 3000,
-        panelClass: 'custom-snack-bar', // Clase personalizada
       })
       .onAction()
       .subscribe(() => {

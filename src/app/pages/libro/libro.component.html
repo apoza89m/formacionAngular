@@ -2,8 +2,8 @@
   <mat-card-header>
     <mat-card-title>{{ libro.titulo | uppercase }}</mat-card-title>
     <mat-card-subtitle *ngIf="libro.autor">{{ libro.autor }}</mat-card-subtitle>
-    <mat-card-subtitle>Precio: {{ libro.precio }}€</mat-card-subtitle>
-    <mat-card-subtitle>Stock: {{ libro.stock }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ libro.precio }}€</mat-card-subtitle>
+    <mat-card-subtitle>{{ libro.stock }}</mat-card-subtitle>
   </mat-card-header>
   <!--<img mat-card-image src="images/{{ libro.titulo }}.jpg" alt="Portada" />-->
   <!--<mat-card-content>
@@ -13,11 +13,16 @@
         mountainous terrain, the Shiba Inu was originally bred for hunting.
       </p>
     </mat-card-content>-->
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="comprar()">
-      Comprar
-    </button>
-    <button mat-raised-button color="accent" (click)="add()">Add</button>
-    <button mat-raised-button color="warn" (click)="remove()">Remove</button>
+  <mat-card-actions *ngIf="!modoLectura">
+    <!--contonedores para aplicar lógica angular-->
+    <ng-container *ngIf="modoElegido === 'Compra'">
+      <button mat-raised-button color="primary" (click)="comprar()">
+        Comprar
+      </button>
+    </ng-container>
+    <ng-container *ngIf="modoElegido === 'Admin'">
+      <button mat-raised-button color="accent" (click)="add()">Add</button>
+      <button mat-raised-button color="warn" (click)="remove()">Remove</button>
+    </ng-container>
   </mat-card-actions>
 </mat-card>

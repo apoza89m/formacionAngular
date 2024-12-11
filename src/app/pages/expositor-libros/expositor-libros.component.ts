@@ -9,7 +9,7 @@ import { LibroService } from '../../core/services/libro.service';
   styleUrl: './expositor-libros.component.scss',
 })
 export class ExpositorLibrosComponent {
-  modoElegido: String = 'Visita';
+  modoElegido: string = 'Compra';
 
   /*misLibros: String[] = [
     'El Hijo del Traidor',
@@ -53,7 +53,7 @@ export class ExpositorLibrosComponent {
    * Función que cambia el modoElegido
    * @param modo Modo deseado
    */
-  cambiaModo(modo: String): void {
+  cambiaModo(modo: string): void {
     this.modoElegido = modo;
   }
 

@@ -9,8 +9,13 @@ import { Libro } from '../../core/models/Libro';
 export class LibroComponent {
   // Recoge información libro del componente padre
   @Input() libro: Libro;
+
+  @Input() modoElegido: string;
+
   // Envia un evento al padre
   @Output() notificacionCompra: EventEmitter<Libro> = new EventEmitter();
+
+  @Input() modoLectura: boolean = false;
 
   constructor() {}
 

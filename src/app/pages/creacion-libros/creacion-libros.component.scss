@@ -2,7 +2,11 @@ mat-card {
   width: 50%;
   margin: auto;
 }
-
+app-libro {
+  margin: auto;
+  display: block;
+  width: fit-content;
+}
 .example-card {
   width: 300px;
   display: flex;

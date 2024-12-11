@@ -1,6 +1,6 @@
 # FormacionAngular
 
-05(1) - 00:00:00
+03(1) - 00:45:15
 
 ng new formacionAngular --no-standalone
 
@@ -24,3 +24,9 @@ ng g g core/guards/auth
 ng g g core/guards/authed
 
 ng g s core/services/libro
+
+.container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
