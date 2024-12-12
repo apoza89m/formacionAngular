@@ -1,13 +1,13 @@
 <h2>Creación</h2>
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Agregar Nuevo Libro</mat-card-title>
+    <mat-card-title>Agregar nuevo libro:</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="libroForm" (ngSubmit)="addLibro()">
       <!-- Título -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Título</mat-label>
+        <mat-label>Título: </mat-label>
         <input
           matInput
           formControlName="titulo"
@@ -20,13 +20,13 @@
 
       <!-- Autor -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Autor</mat-label>
+        <mat-label>Autor: </mat-label>
         <input matInput formControlName="autor" placeholder="Autor del libro" />
       </mat-form-field>
 
       <!-- Precio -->
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Precio</mat-label>
+        <mat-label>Precio: </mat-label>
         <input matInput type="number" formControlName="precio" />
         <mat-error *ngIf="libroForm.get('precio')?.hasError('required')">
           El precio es obligatorio.
@@ -37,16 +37,23 @@
       </mat-form-field>
 
       <!-- Stock -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Stock</mat-label>
-        <input matInput type="number" formControlName="stock" />
-        <mat-error *ngIf="libroForm.get('stock')?.hasError('required')">
-          El stock es obligatorio.
-        </mat-error>
-        <mat-error *ngIf="libroForm.get('stock')?.hasError('min')">
-          El stock debe ser mayor a 0.
-        </mat-error>
-      </mat-form-field>
+      <div>
+        <mat-label>Stock disponible: </mat-label>
+        <mat-slider max="30" min="1" step="1" tickInterval="1">
+          <input matSliderThumb formControlName="stock" />
+        </mat-slider>
+        <mat-error
+          *ngIf="
+            libroForm.get('stock').hasError('required') &&
+            libroForm.get('stock').touched
+          "
+          >El campo es obligatorio</mat-error
+        >
+        <mat-error *ngIf="libroForm.get('stock').hasError('min')"
+          >Debe haber al menos un libro</mat-error
+        >
+        {{ libroForm.get("stock").value }}
+      </div>
 
       <br />
 

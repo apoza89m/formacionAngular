@@ -1,10 +1,14 @@
 # FormacionAngular
 
-03(1) - 00:45:15
+06(1) - 00:17:07
 
 ng new formacionAngular --no-standalone
 
 ng serve --o
+
+npm run ng <command>
+
+ng add @angular/material@latest
 
 ng completion[options]
 https://angular.dev/cli/completion
@@ -26,7 +30,13 @@ ng g g core/guards/authed
 ng g s core/services/libro
 
 .container {
-  display: grid;
-  place-items: center;
-  height: 100vh;
+display: grid;
+place-items: center;
+height: 100vh;
 }
+
+npm run ng g c pages/edicionLibro
+npm run ng g p shared/pipes/addPuntos
+npm run ng g d shared/directives/decoraEtiquetas
+
+ng g d shared/directives/conversionInput

@@ -8,6 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
+    MatSliderModule,
   ],
   exports: [
     CommonModule,
@@ -32,6 +36,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
+    MatSliderModule,
   ],
 })
 export class MaterialModule {}

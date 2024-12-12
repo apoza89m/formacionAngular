@@ -103,7 +103,7 @@ export class LibroService {
   openSnackBar(message: string, action: string) {
     this._snackBar
       .open(message, action, {
-        duration: 3000,
+        duration: 2000,
         //panelClass: 'custom-snack-bar', // Clase personalizada
       })
       .onAction()
@@ -129,5 +129,53 @@ export class LibroService {
       observer.next();
       observer.complete();
     });
+  }
+
+  updateLibro(libroOriginal: Libro, libroModificado: Libro): Observable<Libro> {
+    return new Observable((observer) => {
+      setTimeout(() => {
+        const indexLibroModificar: number =
+          this.misLibros.indexOf(libroOriginal);
+        this.misLibros[indexLibroModificar] = libroModificado;
+        localStorage.setItem('librosEnLocal', JSON.stringify(this.misLibros));
+        observer.next(libroModificado);
+        this.openSnackBar('Libro actualizado', 'Cerrar');
+
+        observer.complete();
+      }, 1000);
+    });
+  }
+
+  eliminaLibro(libro: Libro): Observable<boolean> {
+    return new Observable((observer) => {
+      setTimeout(() => {
+        const indexLibro: number = this.misLibros.indexOf(libro);
+        if (indexLibro !== -1) {
+          this.misLibros.splice(indexLibro, 1);
+          localStorage.setItem('librosEnLocal', JSON.stringify(this.misLibros));
+          observer.next(true);
+          this.openSnackBar('Libro borrado', 'Cerrar');
+        } else {
+          this.openSnackBar('Libro no encontrado', 'Cerrar');
+        }
+        observer.complete();
+      }, 1000);
+    });
+  }
+
+  recuperaSinopsisSegunTitulo(titulo: string): string {
+    const libroEncontrado: Libro = this.misLibros.find(
+      (libro) =>
+        libro.titulo.trim().toUpperCase() === titulo.trim().toUpperCase()
+    );
+    return 'Sinopsis: Quisque fermentum fames dignissim elementum tincidunt pretium tempor erat in, pellentesque phasellus faucibus mattis feugiat sapien eleifend morbi, mauris justo sollicitudin aptent per parturient felis sociosqu.';
+  }
+
+  recuperaStockSegunTitulo(titulo: string): number {
+    const libroEncontrado: Libro = this.misLibros.find(
+      (libro) =>
+        libro.titulo.trim().toUpperCase() === titulo.trim().toUpperCase()
+    );
+    return libroEncontrado.stock;
   }
 }

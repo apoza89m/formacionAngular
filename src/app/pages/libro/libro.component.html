@@ -1,28 +1,34 @@
 <mat-card class="example-card" appearance="outlined">
   <mat-card-header>
-    <mat-card-title>{{ libro.titulo | uppercase }}</mat-card-title>
+    <mat-card-title appDecoraEtiquetas>{{
+      libro.titulo | uppercase
+    }}</mat-card-title>
     <mat-card-subtitle *ngIf="libro.autor">{{ libro.autor }}</mat-card-subtitle>
     <mat-card-subtitle>{{ libro.precio }}€</mat-card-subtitle>
-    <mat-card-subtitle>{{ libro.stock }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ libro.stock | addPuntos }}</mat-card-subtitle>
   </mat-card-header>
   <!--<img mat-card-image src="images/{{ libro.titulo }}.jpg" alt="Portada" />-->
   <!--<mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan. A small, agile dog that copes very well with
-        mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
+      <p>Contenido</p>
     </mat-card-content>-->
   <mat-card-actions *ngIf="!modoLectura">
     <!--contonedores para aplicar lógica angular-->
-    <ng-container *ngIf="modoElegido === 'Compra'">
+    <ng-container *ngIf="modoElegido === 'Compra'; else modoAdmin">
       <button mat-raised-button color="primary" (click)="comprar()">
         Comprar
       </button>
     </ng-container>
-    <ng-container *ngIf="modoElegido === 'Admin'">
+    <ng-template #modoAdmin>
       <button mat-raised-button color="accent" (click)="add()">Add</button>
-      <button mat-raised-button color="warn" (click)="remove()">Remove</button>
-    </ng-container>
+      <button mat-raised-button color="accent" (click)="remove()">
+        Remove
+      </button>
+      <button mat-raised-button color="primary" (click)="editar()">
+        Editar
+      </button>
+      <button mat-raised-button color="warn" (click)="eliminar()">
+        Eliminar
+      </button>
+    </ng-template>
   </mat-card-actions>
 </mat-card>

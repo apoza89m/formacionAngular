@@ -1,8 +1,9 @@
 <h2>Expositor</h2>
-<!-- no se va a ver hasta que se invoque-->
+
 <div *ngIf="modoElegido === 'Compra'; else opcionElse">
   <h3>Compra</h3>
 </div>
+<!-- no se va a ver hasta que se invoque-->
 <ng-template #opcionElse>
   <h3>Admin</h3>
 </ng-template>

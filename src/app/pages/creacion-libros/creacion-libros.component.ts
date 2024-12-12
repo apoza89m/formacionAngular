@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LibroService } from '../../core/services/libro.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Libro } from '../../core/models/Libro';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-creacion-libros',
@@ -12,6 +13,7 @@ export class CreacionLibrosComponent {
   libroForm: FormGroup;
   libroPrevisualizado?: Libro;
   libroCreado: Libro = {} as Libro;
+  subscriptionBorrado: Subscription;
 
   constructor(private fb: FormBuilder, private libroService: LibroService) {
     console.log('Mi libro favorito: ' + this.libroService.favorito);
@@ -19,11 +21,18 @@ export class CreacionLibrosComponent {
       titulo: ['', [Validators.required]],
       autor: [''],
       precio: [0, [Validators.required, Validators.min(0.01)]],
-      stock: [0, [Validators.required, Validators.min(1)]],
+      stock: [1, [Validators.required, Validators.min(1)]],
     });
-    this.libroForm.valueChanges.subscribe((valor) => {
-      this.libroCreado = valor;
-    });
+    this.subscriptionBorrado = this.libroForm.valueChanges.subscribe(
+      (valor) => {
+        this.libroCreado = valor;
+      }
+    );
+  }
+
+  // Función para mostrar el stock en el slider
+  stock(value: number): string {
+    return `${value} unidades`;
   }
 
   cerrarPrevisualizacion(): void {
@@ -44,5 +53,8 @@ export class CreacionLibrosComponent {
         'Cerrar'
       );
     }
+  }
+  ngOnDestro() {
+    this.subscriptionBorrado.unsubscribe();
   }
 }

@@ -1,5 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Libro } from '../../core/models/Libro';
+import { LibroService } from '../../core/services/libro.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EdicionLibroComponent } from '../edicion-libro/edicion-libro.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-libro',
@@ -17,7 +21,7 @@ export class LibroComponent {
 
   @Input() modoLectura: boolean = false;
 
-  constructor() {}
+  constructor(private libroService: LibroService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     console.log(this.libro);
@@ -39,5 +43,24 @@ export class LibroComponent {
       return true;
     }
     return false;
+  }
+
+  editar() {
+    const configDialog: MatDialogConfig = {
+      data: {
+        libro: this.libro,
+      },
+    };
+    const dialogRef = this.dialog.open(EdicionLibroComponent, configDialog);
+    dialogRef.afterClosed().subscribe((libroUpdated) => {
+      this.libro = libroUpdated;
+      console.log(`Resultado del dialog: ${libroUpdated}`);
+    });
+  }
+
+  eliminar() {
+    this.libroService.eliminaLibro(this.libro).subscribe((resultado) => {
+      console.log('Borrado: ' + resultado);
+    });
   }
 }

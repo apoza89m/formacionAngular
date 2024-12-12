@@ -1,5 +1,7 @@
 .example-card {
   width: 300px;
+  min-height: fit-content;
+  height: auto;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -9,6 +11,22 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: #fff;
 }
+
+mat-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  width: 80%;
+}
+
+mat-card-actions button {
+  flex: 1 1 45%;
+}
 img {
   width: 80%;
+}
+
+.colorRojo {
+  color: red;
 }

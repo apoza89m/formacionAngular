@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Libro } from '../../core/models/Libro';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibroService } from '../../core/services/libro.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-expositor-libros',
@@ -26,6 +27,8 @@ export class ExpositorLibrosComponent {
   misLibros: Libro[];
   librosComprado: Libro[] = [];
 
+  subscriptionBorrado: Subscription;
+
   private _snackBar = inject(MatSnackBar);
 
   constructor(private libroService: LibroService) {
@@ -36,9 +39,11 @@ export class ExpositorLibrosComponent {
 
   ngOnInit(): void {
     console.log('Ejecuto el init.');
-    this.libroService.getLibros().subscribe((libros) => {
-      this.misLibros = libros;
-    });
+    this.subscriptionBorrado = this.libroService
+      .getLibros()
+      .subscribe((libros) => {
+        this.misLibros = libros;
+      });
   }
 
   ngAfterViewInit(): void {
@@ -47,6 +52,9 @@ export class ExpositorLibrosComponent {
 
   ngOnDestroy(): void {
     console.log('Me destruyo.');
+
+    // Queremos que todas las subscripciones se terminen
+    this.subscriptionBorrado.unsubscribe();
   }
 
   /**
