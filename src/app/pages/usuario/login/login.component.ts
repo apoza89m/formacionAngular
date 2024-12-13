@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LibroService } from '../../core/services/libro.service';
+import { LibroService } from '../../../core/services/libro.service';
 
 export interface TipoLoginForm {
   email: FormControl<string>;

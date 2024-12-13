@@ -1,7 +1,5 @@
 # FormacionAngular
 
-06 - 00:02:37
-
 ng new formacionAngular --no-standalone
 
 ng serve --o
@@ -40,6 +38,8 @@ npm run ng g p shared/pipes/addPuntos
 npm run ng g d shared/directives/decoraEtiquetas
 
 ng g d shared/directives/conversionInput
-
 ng g c shared/tablaGenerica
+
 ng g m pages/usuario --routing
+
+ng build

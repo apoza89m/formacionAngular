@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     const isAuthenticated = this.checkAuthentication();
     if (!isAuthenticated) {
       this.openSnackBar('Debe loguearse primero.', 'Cerrar');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/usuario/login']);
       return false;
     }
     return true;
