@@ -4,7 +4,6 @@ import { ExpositorLibrosComponent } from './pages/expositor-libros/expositor-lib
 import { CreacionLibrosComponent } from './pages/creacion-libros/creacion-libros.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/expositor', pathMatch: 'full' }, // Redirección inicial
@@ -14,7 +13,11 @@ const routes: Routes = [
     component: CreacionLibrosComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'usuario',
+    loadChildren: () =>
+      import('./pages/usuario/usuario.module').then((m) => m.UsuarioModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

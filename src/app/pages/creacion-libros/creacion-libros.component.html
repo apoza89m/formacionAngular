@@ -12,6 +12,7 @@
           matInput
           formControlName="titulo"
           placeholder="Título del libro"
+          appConversionInput="mayuscula"
         />
         <mat-error *ngIf="libroForm.get('titulo')?.hasError('required')">
           El título es obligatorio.

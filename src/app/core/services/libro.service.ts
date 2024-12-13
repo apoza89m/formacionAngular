@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Libro } from '../models/Libro';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -10,6 +10,7 @@ export class LibroService {
   favorito: string = 'Fuego y Sangre';
   private _snackBar = inject(MatSnackBar);
   misLibros: Libro[];
+  tituloWeb: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor() {
     const libro1: Libro = {
@@ -168,7 +169,10 @@ export class LibroService {
       (libro) =>
         libro.titulo.trim().toUpperCase() === titulo.trim().toUpperCase()
     );
-    return 'Sinopsis: Quisque fermentum fames dignissim elementum tincidunt pretium tempor erat in, pellentesque phasellus faucibus mattis feugiat sapien eleifend morbi, mauris justo sollicitudin aptent per parturient felis sociosqu.';
+
+    return libroEncontrado
+      ? `Sinopsis del libro "${titulo}": Quisque fermentum fames dignissim elementum tincidunt.`
+      : 'Sinopsis no disponible.';
   }
 
   recuperaStockSegunTitulo(titulo: string): number {

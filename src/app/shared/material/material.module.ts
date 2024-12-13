@@ -10,34 +10,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+const materialModules = [
+  MatCardModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDialogModule,
+  MatSliderModule,
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSliderModule,
-  ],
-  exports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSliderModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...materialModules],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, ...materialModules],
 })
 export class MaterialModule {}

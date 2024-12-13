@@ -47,3 +47,21 @@
 <!--<pre>
   {{ misLibros | json }}
 </pre>-->
+
+<h3>Tabla Libros</h3>
+<app-tabla-generica
+  *ngIf="misLibros"
+  [datos]="misLibros"
+  [columnas]="['Titulo', 'Autor', 'Precio', 'Stock']"
+  [modelos]="['titulo', 'autor', 'precio', 'stock']"
+>
+</app-tabla-generica>
+
+<h3>Tabla Autores</h3>
+<app-tabla-generica
+  *ngIf="autores"
+  [datos]="autores"
+  [columnas]="this.columnas"
+  [modelos]="this.modelos"
+>
+</app-tabla-generica>

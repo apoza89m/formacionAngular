@@ -7,7 +7,7 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Mi libreria</span>
+  <span>{{ tituloNavegacion }}</span>
   <span class="example-spacer"></span>
   <mat-icon
     class="example-icon"
@@ -22,7 +22,9 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p class="align-center">Menu</p>
     <hr />
-    <div class="elementoBarra" [routerLink]="['login']">Inicio de sesión</div>
+    <div class="elementoBarra" [routerLink]="['usuario/login']">
+      Inicio de sesión
+    </div>
     <div class="elementoBarra" [routerLink]="['expositor']">Expositor</div>
     <div class="elementoBarra" [routerLink]="['creacion']">Creación</div>
   </mat-drawer>

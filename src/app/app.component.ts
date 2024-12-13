@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LibroService } from './core/services/libro.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'formacionAngular';
 
+  tituloNavegacion: string = 'Mi libreria';
+
   sesion: boolean = false;
 
-  constructor() {}
+  constructor(private libroServioce: LibroService) {
+    this.libroServioce.tituloWeb.subscribe((nuevoTitulo) => {
+      this.tituloNavegacion = nuevoTitulo;
+    });
+  }
 
   ngOnInit() {}
 

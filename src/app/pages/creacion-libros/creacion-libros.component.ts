@@ -16,7 +16,9 @@ export class CreacionLibrosComponent {
   subscriptionBorrado: Subscription;
 
   constructor(private fb: FormBuilder, private libroService: LibroService) {
+    this.libroService.tituloWeb.next('Creación');
     console.log('Mi libro favorito: ' + this.libroService.favorito);
+
     this.libroForm = this.fb.group({
       titulo: ['', [Validators.required]],
       autor: [''],
@@ -29,6 +31,8 @@ export class CreacionLibrosComponent {
       }
     );
   }
+
+  ngOnInit() {}
 
   // Función para mostrar el stock en el slider
   stock(value: number): string {

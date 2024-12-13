@@ -3,6 +3,7 @@ import { Libro } from '../../core/models/Libro';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LibroService } from '../../core/services/libro.service';
 import { Subscription } from 'rxjs';
+import { Autor } from '../../core/models/Autor';
 
 @Component({
   selector: 'app-expositor-libros',
@@ -26,6 +27,9 @@ export class ExpositorLibrosComponent {
 
   misLibros: Libro[];
   librosComprado: Libro[] = [];
+  autores: Array<Autor>;
+  columnas: string[] = ['Nombre', 'Edad', 'Cantidad libros publicados'];
+  modelos: string[] = ['nombre', 'edad', 'cantidadLibrosPublicados'];
 
   subscriptionBorrado: Subscription;
 
@@ -35,10 +39,30 @@ export class ExpositorLibrosComponent {
     console.log('Soy el constructor.');
     console.log('Mi libro favorito: ' + this.libroService.favorito);
     this.libroService.favorito = 'Choque de reyes';
+    this.libroService.tituloWeb.next('Expositor');
+
+    const autor1: Autor = {
+      nombre: 'Pepe',
+      edad: 50,
+      cantidadLibrosPublicados: 3,
+    };
+    const autor2: Autor = {
+      nombre: 'Ramon',
+      edad: 47,
+      cantidadLibrosPublicados: 2,
+    };
+    const autor3: Autor = {
+      nombre: 'Manolo',
+      edad: 67,
+      cantidadLibrosPublicados: 7,
+    };
+
+    this.autores = [autor1, autor2, autor3];
   }
 
   ngOnInit(): void {
     console.log('Ejecuto el init.');
+
     this.subscriptionBorrado = this.libroService
       .getLibros()
       .subscribe((libros) => {
